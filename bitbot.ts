@@ -825,6 +825,38 @@ namespace bitbaot {
     }
 
     /**
+     * Set starboard LED to a given color (range 0-255 for r, g, b).
+     *
+          * @param rgb RGB color of the LED
+     */
+    //% blockId="bitbaot_sett_styrbord_farge" block="sett styrbord LED til %rgb=bb_colours"
+    //% weight=80
+    //% subcategory=FireLeds
+    //% group=Basic
+    //% blockGap=8
+    export function setStarboardColor(rgb: number): void {
+        fire().setPixel(11, rgb);
+        updateLEDs();
+    }
+
+    /**
+         * Set port LED to a given color (range 0-255 for r, g, b).
+         *
+              * @param rgb RGB color of the LED
+         */
+    //% blockId="bitbaot_sett_babord_farge" block="sett babord LED til %rgb=bb_colours"
+    //% weight=80
+    //% subcategory=FireLeds
+    //% group=Basic
+    //% blockGap=8
+    export function setPortColor(rgb: number): void {
+        fire().setPixel(6, rgb);
+        updateLEDs();
+    }
+
+
+
+    /**
       * Shows a rainbow pattern on all LEDs.
       */
     //% blockId="bitbaot_rainbow" block="set LED rainbow"
