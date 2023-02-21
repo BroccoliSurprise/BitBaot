@@ -206,7 +206,7 @@ enum BBColors {
 /**
  * Custom blocks
  */
-//% weight=50 color=#e7660b icon="\uf1b9"
+//% weight=50 color=#12d633 icon="\uf21a"
 //% groups='["Basic","Advanced","Special","Ultrasonic","Line Sensor","5x5 Matrix","BitFace","OLED 128x64"]'
 namespace bitbaot {
     let fireBand: fireled.Band;
