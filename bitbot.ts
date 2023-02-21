@@ -1,4 +1,4 @@
-﻿
+
 /**
   * Eyeball directions
   */
@@ -215,7 +215,9 @@ enum BBColors
     //% block=white
     White = 0xffffff,
     //% block=black
-    Black = 0x000000
+    Black = 0x000000,
+    //% block=awesome
+    Awesome = 0x12d633
 }
 
 /**
@@ -223,7 +225,7 @@ enum BBColors
  */
 //% weight=50 color=#e7660b icon="\uf1b9"
 //% groups='["Basic","Advanced","Special","Ultrasonic","Line Sensor","5x5 Matrix","BitFace","OLED 128x64"]'
-namespace bitbot
+namespace bitbaot
 {
     let fireBand: fireled.Band;
     let _updateMode = BBMode.Auto;
@@ -1032,22 +1034,6 @@ namespace bitbot
 
 // Built-in Sensors - Inputs and Outputs
 
-    /**
-      * Sound a buzz.
-      * @param flag state of buzzer (On or Off)
-      */
-    //% blockId="bitbot_buzz" block="turn buzzer%flag"
-    //% flag.shadow="toggleOnOff"
-    //% weight=100
-    //% subcategory="Inputs & Outputs"
-    export function buzz(flag: boolean): void
-    {
-        let buzz = flag ? 1 : 0;
-        if (getModel() == BBModel.Classic)
-            pins.digitalWritePin(DigitalPin.P14, buzz);
-        else
-            pins.digitalWritePin(DigitalPin.P0, buzz);
-    }
 
     /**
     * Read distance from sonar module connected to accessory connector.
@@ -1141,22 +1127,6 @@ namespace bitbot
         }
     }
 
-    /**
-      * Adjust opening of Talon attachment
-      * @param degrees Degrees to open Talon (0 to 80). eg: 30
-      */
-    //% blockId="bitbot_set_talon" block="open talon%degrees|degrees"
-    //% weight=60
-    //% degrees.min=0 degrees.max=80
-    //% subcategory="Inputs & Outputs"
-    export function setTalon(degrees: number): void
-    {
-        degrees = clamp(degrees, 0, 80);
-        if (getModel() == BBModel.Classic)
-            pins.servoWritePin(AnalogPin.P15, degrees);
-        else
-            pins.servoWritePin(AnalogPin.P2, degrees);
-    }
 
     /**
       * Position Servos on P1 and P2 (XL Only)

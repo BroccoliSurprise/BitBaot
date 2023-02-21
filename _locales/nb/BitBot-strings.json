@@ -13,6 +13,7 @@
   "BBColors.Violet|block": "fiolett",
   "BBColors.White|block": "hvit",
   "BBColors.Yellow|block": "gul",
+  "BBColors.Awesome|block": "kul",
   "BBDirection.Forward|block": "framover",
   "BBDirection.Reverse|block": "bakover",
   "BBLightSensor.Left|block": "babord",
