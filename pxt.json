@@ -18,11 +18,11 @@
         "_locales/nn/BitBot-strings.json",
         "_locales/nn/BitBot-jsdoc-strings.json",
         "_locales/fr/BitBot-strings.json",
-        "_locales/fr/BitBot-jsdoc-strings.json"
+        "_locales/fr/BitBot-jsdoc-strings.json",
+        "main.py",
+        "main.ts"
     ],
-    "testFiles": [
-        "tests.ts"
-    ],
+    "testFiles": [],
     "public": true,
     "targetVersions": {
         "target": "5.0.12",
