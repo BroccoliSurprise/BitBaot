@@ -2,8 +2,7 @@
 /**
   * Eyeball directions
   */
-enum eyePos
-{
+enum eyePos {
     //% block="forward"
     Forward,
     //% block="down"
@@ -24,16 +23,14 @@ enum eyePos
     UpRight
 }
 
-enum eyeSize
-{
+enum eyeSize {
     //% block="small"
     Small,
     //% block="large"
     Large
 }
 
-enum bfEyes
-{
+enum bfEyes {
     //% block="left"
     Left,
     //% block="right"
@@ -42,8 +39,7 @@ enum bfEyes
     Both
 }
 
-enum bfMouth
-{
+enum bfMouth {
     //% block="smile"
     Smile,
     //% block="grin"
@@ -63,8 +59,7 @@ enum bfMouth
 /**
   * Enumeration of motors.
   */
-enum BBMotor
-{
+enum BBMotor {
     //% block="left"
     Left,
     //% block="right"
@@ -76,8 +71,7 @@ enum BBMotor
 /**
   * Enumeration of forward/reverse directions
   */
-enum BBDirection
-{
+enum BBDirection {
     //% block="forward"
     Forward,
     //% block="reverse"
@@ -87,8 +81,7 @@ enum BBDirection
 /**
   * Enumeration of directions.
   */
-enum BBRobotDirection
-{
+enum BBRobotDirection {
     //% block="left"
     Left,
     //% block="right"
@@ -98,8 +91,7 @@ enum BBRobotDirection
 /**
   * Stop modes. Coast or Brake
   */
-enum BBStopMode
-{
+enum BBStopMode {
     //% block="no brake"
     Coast,
     //% block="brake"
@@ -109,8 +101,7 @@ enum BBStopMode
 /**
   * Enable/Disable for Bluetooth and FireLeds
   */
-enum BBBluetooth
-{
+enum BBBluetooth {
     //% block="Enable"
     btEnable,
     //% block="Disable"
@@ -120,8 +111,7 @@ enum BBBluetooth
 /**
   * Values for buzzer. On or Off
   */
-enum BBBuzz
-{
+enum BBBuzz {
     //% block="on"
     On,
     //% block="off"
@@ -131,8 +121,7 @@ enum BBBuzz
 /**
   * Enumeration of line sensors.
   */
-enum BBLineSensor
-{
+enum BBLineSensor {
     //% block="left"
     Left,
     //% block="right"
@@ -142,8 +131,7 @@ enum BBLineSensor
 /**
   * Enumeration of light sensors.
   */
-enum BBLightSensor
-{
+enum BBLightSensor {
     //% block="left"
     Left,
     //% block="right"
@@ -153,8 +141,7 @@ enum BBLightSensor
 /**
  * Ping unit for sensor.
  */
-enum BBPingUnit
-{
+enum BBPingUnit {
     //% block="cm"
     Centimeters,
     //% block="inches"
@@ -163,8 +150,7 @@ enum BBPingUnit
     MicroSeconds
 }
 
-enum BBServos
-{
+enum BBServos {
     P1,
     P2
 }
@@ -174,18 +160,16 @@ enum BBServos
   * setting to Manual requires show LED changes blocks
   * setting to Auto will update the LEDs everytime they change
   */
-enum BBMode
-{
+enum BBMode {
     Manual,
     Auto
 }
 
 /**
-  * Model Types of BitBot
+  * Model Types of bitbaot
   * Classic or XL
   */
-enum BBModel
-{
+enum BBModel {
     Classic,
     XL,
     Auto
@@ -194,8 +178,7 @@ enum BBModel
 /**
   * Pre-Defined LED colours
   */
-enum BBColors
-{
+enum BBColors {
     //% block=red
     Red = 0xff0000,
     //% block=orange
@@ -225,20 +208,19 @@ enum BBColors
  */
 //% weight=50 color=#e7660b icon="\uf1b9"
 //% groups='["Basic","Advanced","Special","Ultrasonic","Line Sensor","5x5 Matrix","BitFace","OLED 128x64"]'
-namespace bitbaot
-{
+namespace bitbaot {
     let fireBand: fireled.Band;
     let _updateMode = BBMode.Auto;
     let btDisabled = true;
     let matrix5: fireled.Band;
     let bitface: fireled.Band;
-    let mouthSmile: number[] = [0,1,2,3,4,5];
-    let mouthGrin: number[] = [0,1,2,3,4,5,10,11,12,13];
-    let mouthSad: number[] = [0,5,6,7,8,9];
-    let mouthFrown: number[] = [0,5,6,7,8,9,10,11,12,13];
-    let mouthStraight: number[] = [0,5,10,11,12,13];
-    let mouthOooh: number[] = [1,2,3,4,6,7,8,9,10,13];
-    let mouthEeeh: number[] = [0,1,2,3,4,5,6,7,8,9];
+    let mouthSmile: number[] = [0, 1, 2, 3, 4, 5];
+    let mouthGrin: number[] = [0, 1, 2, 3, 4, 5, 10, 11, 12, 13];
+    let mouthSad: number[] = [0, 5, 6, 7, 8, 9];
+    let mouthFrown: number[] = [0, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    let mouthStraight: number[] = [0, 5, 10, 11, 12, 13];
+    let mouthOooh: number[] = [1, 2, 3, 4, 6, 7, 8, 9, 10, 13];
+    let mouthEeeh: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     let oled: firescreen.Screen;
 
     let leftBias = 0;
@@ -264,12 +246,11 @@ namespace bitbaot
     let _p1Trim = 0;
     let _p2Trim = 0;
 
-    function clamp(value: number, min: number, max: number): number
-    {
+    function clamp(value: number, min: number, max: number): number {
         return Math.max(Math.min(max, value), min);
     }
 
-// Block to enable Bluetooth and disable FireLeds.
+    // Block to enable Bluetooth and disable FireLeds.
     /**
       * Enable/Disable Bluetooth support by disabling/enabling FireLeds
       * @param enable enable or disable Blueetoth
@@ -277,29 +258,25 @@ namespace bitbaot
     //% blockId="BBEnableBluetooth"
     //% block="%enable|Bluetooth"
     //% blockGap=8
-    export function bbEnableBluetooth(enable: BBBluetooth)
-    {
+    export function bbEnableBluetooth(enable: BBBluetooth) {
         if (enable == BBBluetooth.btEnable)
             btDisabled = false;
         else
             btDisabled = true;
     }
 
-// Blocks for selecting BitBot Model
+    // Blocks for selecting bitbaot Model
     /**
-      * Force Model of BitBot (Determines Pins used)
-      * @param model Model of BitBot; Classic or XL
+      * Force Model of bitbaot (Determines Pins used)
+      * @param model Model of bitbaot; Classic or XL
       */
-    //% blockId="bitbot_model" block="select BitBot model%model"
+    //% blockId="bitbaot_model" block="select bitbaot model%model"
     //% weight=100
-    //% subcategory=BitBot_Model
-    export function select_model(model: BBModel): void
-    {
-        if((model==BBModel.Classic) || (model==BBModel.XL) || (model==BBModel.Auto))
-        {
+    //% subcategory=bitbaot_Model
+    export function select_model(model: BBModel): void {
+        if ((model == BBModel.Classic) || (model == BBModel.XL) || (model == BBModel.Auto)) {
             _model = model;
-            if (_model == BBModel.Classic)
-            {
+            if (_model == BBModel.Classic) {
                 lMotorD0 = DigitalPin.P0;
                 lMotorD1 = DigitalPin.P8;
                 lMotorA0 = AnalogPin.P0;
@@ -309,8 +286,7 @@ namespace bitbaot
                 rMotorA0 = AnalogPin.P1;
                 rMotorA1 = AnalogPin.P12;
             }
-            else
-            {
+            else {
                 lMotorD0 = DigitalPin.P16;
                 lMotorD1 = DigitalPin.P8;
                 lMotorA0 = AnalogPin.P16;
@@ -324,22 +300,18 @@ namespace bitbaot
     }
 
     /**
-      * get Model of BitBot (Classic or XL)
+      * get Model of bitbaot (Classic or XL)
       */
-    //% blockId="bb_model" block="BitBot model"
+    //% blockId="bb_model" block="bitbaot model"
     //% weight=90
-    //% subcategory=BitBot_Model
-    export function getModel(): BBModel
-    {
+    //% subcategory=bitbaot_Model
+    export function getModel(): BBModel {
         getVersionCode();
-        if (_model == BBModel.Auto)
-        {
-            if (versionCode == 0)
-            {
+        if (_model == BBModel.Auto) {
+            if (versionCode == 0) {
                 select_model(BBModel.Classic);
             }
-            else
-            {
+            else {
                 select_model(BBModel.XL);
                 pins.digitalWritePin(DigitalPin.P0, 0);
             }
@@ -348,15 +320,14 @@ namespace bitbaot
     }
 
     /**
-      * Get numeric value of BitBot Model
+      * Get numeric value of bitbaot Model
       *
-      * @param model BitBot Model eg: BBModel.Classic
+      * @param model bitbaot Model eg: BBModel.Classic
       */
     //% blockId="bb_models" block=%model
     //% weight=80
-    //% subcategory=BitBot_Model
-    export function BBModels(model: BBModel): number
-    {
+    //% subcategory=bitbaot_Model
+    export function BBModels(model: BBModel): number {
         return model;
     }
 
@@ -366,16 +337,15 @@ namespace bitbaot
     //% blockId="getVersionCode"
     //% block="version Code"
     //% weight=80
-    //% subcategory=BitBot_Model
+    //% subcategory=bitbaot_Model
     //% deprecated=true
-    export function getVersionCode(): number
-    {
+    export function getVersionCode(): number {
         if (versionCode == -1)	// first time requesting
             versionCode = (pins.i2cReadNumber(i2caddr, NumberFormat.Int8LE, false) >> 4) & 0x0f;
         return versionCode;
     }
 
-// "DRIVE STRAIGHT" BLOCKS
+    // "DRIVE STRAIGHT" BLOCKS
 
     // Uses bottom 3 bytes of EEROM for motor bias data
     // Bias values from -100 to +100. Negative values decrease Left speed, Positive decrease right speed
@@ -391,15 +361,12 @@ namespace bitbaot
     //% data.min = -128 data.max = 127
     //% weight=100
     //% deprecated=true
-    export function writeEEROM(data: number, address: number): void
-    {
+    export function writeEEROM(data: number, address: number): void {
         wrEEROM(data, address);
     }
 
-    function wrEEROM(data: number, address: number): void
-    {
-        if (getVersionCode() == 5)
-        {
+    function wrEEROM(data: number, address: number): void {
+        if (getVersionCode() == 5) {
             let i2cData = pins.createBuffer(3);
 
             i2cData[0] = address >> 8;	// address MSB
@@ -418,16 +385,13 @@ namespace bitbaot
     //% block="read EEROM address%address"
     //% weight=90
     //% deprecated=true
-    export function readEEROM(address: number): number
-    {
+    export function readEEROM(address: number): number {
         return rdEEROM(address);
     }
 
     // Uses bottom 3 bytes of EEROM for motor calibration. No user access
-    function rdEEROM(address: number): number
-    {
-        if (getVersionCode() == 5)
-        {
+    function rdEEROM(address: number): number {
+        if (getVersionCode() == 5) {
             let i2cRead = pins.createBuffer(2);
 
             i2cRead[0] = address >> 8;	// address MSB
@@ -447,9 +411,8 @@ namespace bitbaot
     //% block="Load calibration from EEROM"
     //% weight=80
     //% deprecated=true
-    export function loadCalibration(): void
-    {
-	for (let i=0; i<3; i++)
+    export function loadCalibration(): void {
+        for (let i = 0; i < 3; i++)
             calibration[i] = rdEEROM(i);
         calibLoaded = true;
     }
@@ -461,10 +424,9 @@ namespace bitbaot
     //% block="Save calibration to EEROM"
     //% weight=70
     //% deprecated=true
-    export function saveCalibration(): void
-    {
-	for (let i=0; i<3; i++)
-            wrEEROM(calibration[i],i);
+    export function saveCalibration(): void {
+        for (let i = 0; i < 3; i++)
+            wrEEROM(calibration[i], i);
     }
 
     /**
@@ -476,15 +438,14 @@ namespace bitbaot
     //% block="Check side%side bias for speed%speed"
     //% weight=60
     //% deprecated=true
-    export function checkCalibration(side: BBMotor, speed: number): number
-    {
+    export function checkCalibration(side: BBMotor, speed: number): number {
         let calibVal = 0;
         leftCalib = 0;
         rightCalib = 0;
         if (speed < 60)
-            calibVal = calibration[1] - ((60 - speed)/30) * (calibration[1] - calibration[0]);
+            calibVal = calibration[1] - ((60 - speed) / 30) * (calibration[1] - calibration[0]);
         else
-            calibVal = calibration[2] - ((90 - speed)/30) * (calibration[2] - calibration[1]);
+            calibVal = calibration[2] - ((90 - speed) / 30) * (calibration[2] - calibration[1]);
         if (calibVal < 0)
             leftCalib = Math.abs(calibVal);
         else
@@ -495,10 +456,9 @@ namespace bitbaot
             return rightCalib;
     }
 
-// New Style Motor Blocks
+    // New Style Motor Blocks
     // slow PWM frequency for slower speeds to improve torque
-    function setPWM(speed: number): void
-    {
+    function setPWM(speed: number): void {
         if (speed < 200)
             pins.analogSetPeriod(AnalogPin.P0, 60000);
         else if (speed < 300)
@@ -516,8 +476,7 @@ namespace bitbaot
     //% speed.min=0 speed.max=100
     //% weight=100
     //% subcategory=Motors
-    export function go(direction: BBDirection, speed: number): void
-    {
+    export function go(direction: BBDirection, speed: number): void {
         move(BBMotor.Both, direction, speed);
     }
 
@@ -531,8 +490,7 @@ namespace bitbaot
     //% speed.min=0 speed.max=100
     //% weight=90
     //% subcategory=Motors
-    export function goms(direction: BBDirection, speed: number, milliseconds: number): void
-    {
+    export function goms(direction: BBDirection, speed: number, milliseconds: number): void {
         go(direction, speed);
         basic.pause(milliseconds);
         stop(BBStopMode.Coast);
@@ -547,15 +505,12 @@ namespace bitbaot
     //% speed.min=0 speed.max=100
     //% weight=80
     //% subcategory=Motors
-    export function rotate(direction: BBRobotDirection, speed: number): void
-    {
-        if (direction == BBRobotDirection.Left)
-        {
+    export function rotate(direction: BBRobotDirection, speed: number): void {
+        if (direction == BBRobotDirection.Left) {
             move(BBMotor.Left, BBDirection.Reverse, speed);
             move(BBMotor.Right, BBDirection.Forward, speed);
         }
-        else if (direction == BBRobotDirection.Right)
-        {
+        else if (direction == BBRobotDirection.Right) {
             move(BBMotor.Left, BBDirection.Forward, speed);
             move(BBMotor.Right, BBDirection.Reverse, speed);
         }
@@ -571,8 +526,7 @@ namespace bitbaot
     //% speed.min=0 speed.max=100
     //% weight=70
     //% subcategory=Motors
-    export function rotatems(direction: BBRobotDirection, speed: number, milliseconds: number): void
-    {
+    export function rotatems(direction: BBRobotDirection, speed: number, milliseconds: number): void {
         rotate(direction, speed);
         basic.pause(milliseconds);
         stop(BBStopMode.Coast);
@@ -585,8 +539,7 @@ namespace bitbaot
     //% blockId="BBstop" block="stop with%mode"
     //% weight=60
     //% subcategory=Motors
-    export function stop(mode: BBStopMode): void
-    {
+    export function stop(mode: BBStopMode): void {
         getModel();
         let stopMode = 0;
         if (mode == BBStopMode.Brake)
@@ -597,17 +550,15 @@ namespace bitbaot
         pins.digitalWritePin(rMotorD1, stopMode);
     }
 
-    function createCalib(speed: number): void
-    {
-        if (getVersionCode() == 5)
-        {        
+    function createCalib(speed: number): void {
+        if (getVersionCode() == 5) {
             let calibVal = 0;
-            if(calibLoaded == false)
+            if (calibLoaded == false)
                 loadCalibration();
             if (speed < 60)
-                calibVal = calibration[1] - ((60 - speed)/30) * (calibration[1] - calibration[0]);
+                calibVal = calibration[1] - ((60 - speed) / 30) * (calibration[1] - calibration[0]);
             else
-                calibVal = calibration[2] - ((90 - speed)/30) * (calibration[2] - calibration[1]);
+                calibVal = calibration[2] - ((90 - speed) / 30) * (calibration[2] - calibration[1]);
             leftCalib = 0;
             rightCalib = 0;
             if (calibVal < 0)
@@ -627,47 +578,38 @@ namespace bitbaot
     //% weight=50
     //% speed.min=0 speed.max=100
     //% subcategory=Motors
-    export function move(motor: BBMotor, direction: BBDirection, speed: number): void
-    {
+    export function move(motor: BBMotor, direction: BBDirection, speed: number): void {
         let lSpeed = 0;
         let rSpeed = 0;
         getModel();
         speed = clamp(speed, 0, 100);
-	createCalib(speed); // sets bias values for "DriveStraight" if available (versionCode == 5 only)
+        createCalib(speed); // sets bias values for "DriveStraight" if available (versionCode == 5 only)
         speed = speed * 10.23
         setPWM(speed);
-        if (getVersionCode() == 5 && leftBias == 0 && rightBias == 0)
-        {
+        if (getVersionCode() == 5 && leftBias == 0 && rightBias == 0) {
             lSpeed = Math.round(speed * (100 - leftCalib) / 100);
             rSpeed = Math.round(speed * (100 - rightCalib) / 100);
         }
-        else
-        {
+        else {
             lSpeed = Math.round(speed * (100 - leftBias) / 100);
             rSpeed = Math.round(speed * (100 - rightBias) / 100);
         }
-        if ((motor == BBMotor.Left) || (motor == BBMotor.Both))
-        {
-            if (direction == BBDirection.Forward)
-            {
+        if ((motor == BBMotor.Left) || (motor == BBMotor.Both)) {
+            if (direction == BBDirection.Forward) {
                 pins.analogWritePin(lMotorA0, lSpeed);
                 pins.analogWritePin(lMotorA1, 0);
             }
-            else
-            {
+            else {
                 pins.analogWritePin(lMotorA0, 0);
                 pins.analogWritePin(lMotorA1, lSpeed);
             }
         }
-        if ((motor == BBMotor.Right) || (motor == BBMotor.Both))
-        {
-            if (direction == BBDirection.Forward)
-            {
+        if ((motor == BBMotor.Right) || (motor == BBMotor.Both)) {
+            if (direction == BBDirection.Forward) {
                 pins.analogWritePin(rMotorA0, rSpeed);
                 pins.analogWritePin(rMotorA1, 0);
             }
-            else
-            {
+            else {
                 pins.analogWritePin(rMotorA0, 0);
                 pins.analogWritePin(rMotorA1, rSpeed);
             }
@@ -683,73 +625,61 @@ namespace bitbaot
     //% bias.min=0 bias.max=80
     //% weight=40
     //% subcategory=Motors
-    export function BBBias(direction: BBRobotDirection, bias: number): void
-    {
+    export function BBBias(direction: BBRobotDirection, bias: number): void {
         bias = clamp(bias, 0, 80);
-        if (direction == BBRobotDirection.Left)
-        {
+        if (direction == BBRobotDirection.Left) {
             leftBias = bias;
             rightBias = 0;
         }
-        else
-        {
+        else {
             leftBias = 0;
             rightBias = bias;
         }
     }
 
-// Old Motor Blocks - kept for compatibility
+    // Old Motor Blocks - kept for compatibility
     /**
       * Drive motor(s) forward or reverse.
       * @param motor motor to drive.
       * @param speed speed of motor (-1023 to 1023). eg: 600
       */
-    //% blockId="bitbot_motor" block="drive%motor|motor(s) at speed%speed"
+    //% blockId="bitbaot_motor" block="drive%motor|motor(s) at speed%speed"
     //% speed.min=-1023 speed.max=1023
     //% weight=80
     //% subcategory=Motors
     //% group="Old style blocks"
     //% blockGap=8
     //% deprecated=true
-    export function motor(motor: BBMotor, speed: number): void
-    {
+    export function motor(motor: BBMotor, speed: number): void {
         speed = clamp(speed, -1023, 1023);
         let speed0 = 0;
         let speed1 = 0;
         setPWM(Math.abs(speed));
-        if (speed > 0)
-        {
+        if (speed > 0) {
             speed0 = speed;
             speed1 = 0;
         }
-        else
-        {
+        else {
             speed0 = 0;
             speed1 = 0 - speed;
         }
-        if ((motor == BBMotor.Left) || (motor == BBMotor.Both))
-        {
-            if (getModel() == BBModel.Classic)
-            {
+        if ((motor == BBMotor.Left) || (motor == BBMotor.Both)) {
+            if (getModel() == BBModel.Classic) {
                 pins.analogWritePin(AnalogPin.P0, speed0);
                 pins.analogWritePin(AnalogPin.P8, speed1);
             }
-            else
-            {
+            else {
                 pins.analogWritePin(AnalogPin.P16, speed0);
                 pins.analogWritePin(AnalogPin.P8, speed1);
             }
         }
 
-        if ((motor == BBMotor.Right) || (motor == BBMotor.Both))
-        {
-            if (getModel() == BBModel.Classic)
-            {
+        if ((motor == BBMotor.Right) || (motor == BBMotor.Both)) {
+            if (getModel() == BBModel.Classic) {
                 pins.analogWritePin(AnalogPin.P1, speed0);
                 pins.analogWritePin(AnalogPin.P12, speed1);
             }
-            else
-            {
+            else {
                 pins.analogWritePin(AnalogPin.P14, speed0);
                 pins.analogWritePin(AnalogPin.P12, speed1);
             }
@@ -760,15 +690,14 @@ namespace bitbaot
       * Drive robot forward (or backward) at speed.
       * @param speed speed of motor between -1023 and 1023. eg: 600
       */
-    //% blockId="bitbot_motor_forward" block="drive at speed%speed"
+    //% blockId="bitbaot_motor_forward" block="drive at speed%speed"
     //% speed.min=-1023 speed.max=1023
     //% weight=100
     //% subcategory=Motors
     //% group="Old style blocks"
     //% blockGap=8
     //% deprecated=true
-    export function drive(speed: number): void
-    {
+    export function drive(speed: number): void {
         motor(BBMotor.Both, speed);
     }
 
@@ -777,15 +706,14 @@ namespace bitbaot
       * @param speed speed of motor between -1023 and 1023. eg: 600
       * @param milliseconds duration in milliseconds to drive forward for, then stop. eg: 400
       */
-    //% blockId="bitbot_motor_forward_milliseconds" block="drive at speed%speed| for%milliseconds|ms"
+    //% blockId="bitbaot_motor_forward_milliseconds" block="drive at speed%speed| for%milliseconds|ms"
     //% speed.min=-1023 speed.max=1023
     //% weight=95
     //% subcategory=Motors
     //% group="Old style blocks"
     //% blockGap=8
     //% deprecated=true
-    export function driveMilliseconds(speed: number, milliseconds: number): void
-    {
+    export function driveMilliseconds(speed: number, milliseconds: number): void {
         drive(speed);
         basic.pause(milliseconds);
         stop(BBStopMode.Coast);
@@ -796,24 +724,21 @@ namespace bitbaot
       * @param direction direction to turn.
       * @param speed speed of motor between 0 and 1023. eg: 600
       */
-    //% blockId="bitbot_turn" block="spin%direction|at speed%speed"
+    //% blockId="bitbaot_turn" block="spin%direction|at speed%speed"
     //% speed.min=0 speed.max=1023
     //% weight=90
     //% subcategory=Motors
     //% group="Old style blocks"
     //% blockGap=8
     //% deprecated=true
-    export function driveTurn(direction: BBRobotDirection, speed: number): void
-    {
+    export function driveTurn(direction: BBRobotDirection, speed: number): void {
         if (speed < 0)
             speed = 0;
-        if (direction == BBRobotDirection.Left)
-        {
+        if (direction == BBRobotDirection.Left) {
             motor(BBMotor.Left, -speed);
             motor(BBMotor.Right, speed);
         }
-        else if (direction == BBRobotDirection.Right)
-        {
+        else if (direction == BBRobotDirection.Right) {
             motor(BBMotor.Left, speed);
             motor(BBMotor.Right, -speed);
         }
@@ -825,28 +750,25 @@ namespace bitbaot
       * @param speed speed of motor between 0 and 1023. eg: 600
       * @param milliseconds duration in milliseconds to turn for, then stop. eg: 400
       */
-    //% blockId="bitbot_turn_milliseconds" block="spin%direction|at speed%speed| fo %milliseconds|ms"
+    //% blockId="bitbaot_turn_milliseconds" block="spin%direction|at speed%speed| fo %milliseconds|ms"
     //% speed.min=0 speed.max=1023
     //% weight=85
     //% subcategory=Motors
     //% group="Old style blocks"
     //% blockGap=8
     //% deprecated=true
-    export function driveTurnMilliseconds(direction: BBRobotDirection, speed: number, milliseconds: number): void
-    {
+    export function driveTurnMilliseconds(direction: BBRobotDirection, speed: number, milliseconds: number): void {
         driveTurn(direction, speed)
         basic.pause(milliseconds)
         stop(BBStopMode.Coast);
     }
 
 
-// Inbuilt FireLed Blocks
+    // Inbuilt FireLed Blocks
 
     // create a FireLed band if not got one already. Default to brightness 40
-    function fire(): fireled.Band
-    {
-        if (!fireBand)
-        {
+    function fire(): fireled.Band {
+        if (!fireBand) {
             fireBand = fireled.newBand(DigitalPin.P13, 12);
             fireBand.setBrightness(40);
         }
@@ -854,8 +776,7 @@ namespace bitbaot
     }
 
     // update FireLeds if _updateMode set to Auto
-    function updateLEDs(): void
-    {
+    function updateLEDs(): void {
         if (_updateMode == BBMode.Auto)
             ledShow();
     }
@@ -864,13 +785,12 @@ namespace bitbaot
       * Sets all LEDs to a given color (range 0-255 for r, g, b).
       * @param rgb RGB color of the LED
       */
-    //% blockId="bitbot_set_led_color" block="set all LEDs to%rgb=bb_colours"
+    //% blockId="bitbaot_set_led_color" block="set all LEDs to%rgb=bb_colours"
     //% weight=100
     //% subcategory=FireLeds
     //% group=Basic
     //% blockGap=8
-    export function setLedColor(rgb: number)
-    {
+    export function setLedColor(rgb: number) {
         fire().setBand(rgb);
         updateLEDs();
     }
@@ -878,13 +798,12 @@ namespace bitbaot
     /**
       * Clear all leds.
       */
-    //% blockId="bitbot_led_clear" block="clear all LEDs"
+    //% blockId="bitbaot_led_clear" block="clear all LEDs"
     //% weight=90
     //% subcategory=FireLeds
     //% group=Basic
     //% blockGap=8
-    export function ledClear(): void
-    {
+    export function ledClear(): void {
         fire().clearBand();
         updateLEDs();
     }
@@ -895,13 +814,12 @@ namespace bitbaot
      * @param ledId position of the LED (0 to 11)
      * @param rgb RGB color of the LED
      */
-    //% blockId="bitbot_set_pixel_color" block="set LED at%ledId|to%rgb=bb_colours"
+    //% blockId="bitbaot_set_pixel_color" block="set LED at%ledId|to%rgb=bb_colours"
     //% weight=80
     //% subcategory=FireLeds
     //% group=Basic
     //% blockGap=8
-    export function setPixelColor(ledId: number, rgb: number): void
-    {
+    export function setPixelColor(ledId: number, rgb: number): void {
         fire().setPixel(ledId, rgb);
         updateLEDs();
     }
@@ -909,13 +827,12 @@ namespace bitbaot
     /**
       * Shows a rainbow pattern on all LEDs.
       */
-    //% blockId="bitbot_rainbow" block="set LED rainbow"
+    //% blockId="bitbaot_rainbow" block="set LED rainbow"
     //% weight=70
     //% subcategory=FireLeds
     //% group=Basic
     //% blockGap=8
-    export function ledRainbow(): void
-    {
+    export function ledRainbow(): void {
         fire().setRainbow();
         updateLEDs()
     }
@@ -923,13 +840,12 @@ namespace bitbaot
     /**
      * Shift LEDs forward and clear with zeros.
      */
-    //% blockId="bitbot_led_shift" block="shift LEDs"
+    //% blockId="bitbaot_led_shift" block="shift LEDs"
     //% weight=60
     //% subcategory=FireLeds
     //% group=Basic
     //% blockGap=8
-    export function ledShift(): void
-    {
+    export function ledShift(): void {
         fire().shiftBand();
         updateLEDs()
     }
@@ -937,13 +853,12 @@ namespace bitbaot
     /**
      * Rotate LEDs forward.
      */
-    //% blockId="bitbot_led_rotate" block="rotate LEDs"
+    //% blockId="bitbaot_led_rotate" block="rotate LEDs"
     //% weight=50
     //% subcategory=FireLeds
     //% group=Basic
     //% blockGap=8
-    export function ledRotate(): void
-    {
+    export function ledRotate(): void {
         fire().rotateBand();
         updateLEDs()
     }
@@ -954,14 +869,13 @@ namespace bitbaot
      * Set the brightness of the LEDs
      * @param brightness a measure of LED brightness in 0-255. eg: 40
      */
-    //% blockId="bitbot_led_brightness" block="set LED brightness%brightness"
+    //% blockId="bitbaot_led_brightness" block="set LED brightness%brightness"
     //% brightness.min=0 brightness.max=255
     //% weight=100
     //% subcategory=FireLeds
     //% group=Advanced
     //% blockGap=8
-    export function ledBrightness(brightness: number): void
-    {
+    export function ledBrightness(brightness: number): void {
         fire().setBrightness(brightness);
         updateLEDs();
     }
@@ -970,13 +884,12 @@ namespace bitbaot
       * Set LED update mode (Manual or Automatic)
       * @param updateMode setting automatic will show LED changes automatically
       */
-    //% blockId="bitbot_set_updateMode" block="set%updateMode|update mode"
+    //% blockId="bitbaot_set_updateMode" block="set%updateMode|update mode"
     //% weight=90
     //% subcategory=FireLeds
     //% group=Advanced
     //% blockGap=8
-    export function setUpdateMode(updateMode: BBMode): void
-    {
+    export function setUpdateMode(updateMode: BBMode): void {
         _updateMode = updateMode;
     }
 
@@ -988,8 +901,7 @@ namespace bitbaot
     //% subcategory=FireLeds
     //% group=Advanced
     //% blockGap=8
-    export function ledShow(): void
-    {
+    export function ledShow(): void {
         if (btDisabled)
             fire().updateBand();
     }
@@ -1011,8 +923,7 @@ namespace bitbaot
     //% color.fieldOptions.colours='["#FF0000","#659900","#18E600","#80FF00","#00FF00","#FF8000","#D82600","#B24C00","#00FFC0","#00FF80","#FFC000","#FF0080","#FF00FF","#B09EFF","#00FFFF","#FFFF00","#8000FF","#0080FF","#0000FF","#FFFFFF","#FF8080","#80FF80","#40C0FF","#999999","#000000"]'
     //% color.fieldOptions.columns=5
     //% color.fieldOptions.className='rgbColorPicker'
-    export function BBColours(color: number): number
-    {
+    export function BBColours(color: number): number {
         return color;
     }
 
@@ -1022,36 +933,33 @@ namespace bitbaot
       * @param green Green value of the LED (0 to 255)
       * @param blue Blue value of the LED (0 to 255)
       */
-    //% blockId="bitbot_convertRGB" block="convert from red%red|green%green|blue%blue"
+    //% blockId="bitbaot_convertRGB" block="convert from red%red|green%green|blue%blue"
     //% weight=60
     //% subcategory=FireLeds
     //% group=Advanced
     //% blockGap=8
-    export function convertRGB(r: number, g: number, b: number): number
-    {
+    export function convertRGB(r: number, g: number, b: number): number {
         return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
     }
 
-// Built-in Sensors - Inputs and Outputs
+    // Built-in Sensors - Inputs and Outputs
 
 
     /**
     * Read distance from sonar module connected to accessory connector.
     * @param unit desired conversion unit
     */
-    //% blockId="bitbot_sonar" block="read sonar as%unit"
+    //% blockId="bitbaot_sonar" block="read sonar as%unit"
     //% weight=90
     //% subcategory="Inputs & Outputs"
-    export function sonar(unit: BBPingUnit): number
-    {
+    export function sonar(unit: BBPingUnit): number {
         // send pulse
         let trig = DigitalPin.P15;
         let echo = DigitalPin.P15;
-        let maxDistance = 2000*37; // 2m
-        let d=10;
+        let maxDistance = 2000 * 37; // 2m
+        let d = 10;
         pins.setPull(trig, PinPullMode.PullNone);
-        for (let x=0; x<10; x++)
-        {
+        for (let x = 0; x < 10; x++) {
             pins.digitalWritePin(trig, 0);
             control.waitMicros(2);
             pins.digitalWritePin(trig, 1);
@@ -1059,11 +967,10 @@ namespace bitbaot
             pins.digitalWritePin(trig, 0);
             // read pulse
             d = pins.pulseIn(echo, PulseValue.High, maxDistance);
-            if (d>0)
+            if (d > 0)
                 break;
         }
-        switch (unit)
-        {
+        switch (unit) {
             case BBPingUnit.Centimeters: return Math.round(d / 59);
             case BBPingUnit.Inches: return Math.round(d / 145);
             default: return d;
@@ -1074,20 +981,17 @@ namespace bitbaot
       * Read line sensor.
       * @param sensor Line sensor to read.
       */
-    //% blockId="bitbot_read_line" block="%sensor|line sensor"
+    //% blockId="bitbaot_read_line" block="%sensor|line sensor"
     //% weight=80
     //% subcategory="Inputs & Outputs"
-    export function readLine(sensor: BBLineSensor): number
-    {
-        if (getModel() == BBModel.Classic)
-        {
+    export function readLine(sensor: BBLineSensor): number {
+        if (getModel() == BBModel.Classic) {
             if (sensor == BBLineSensor.Left)
                 return pins.digitalReadPin(DigitalPin.P11);
             else
                 return pins.digitalReadPin(DigitalPin.P5);
         }
-        else
-        {
+        else {
             let value = pins.i2cReadNumber(i2caddr, NumberFormat.Int8LE, false);
             if (sensor == BBLineSensor.Left)
                 return value & 0x01;
@@ -1100,26 +1004,21 @@ namespace bitbaot
       * Read light sensor.
       * @param sensor Light sensor to read.
       */
-    //% blockId="bitbot_read_light" block="%sensor|light sensor"
+    //% blockId="bitbaot_read_light" block="%sensor|light sensor"
     //% weight=70
     //% subcategory="Inputs & Outputs"
-    export function readLight(sensor: BBLightSensor): number
-    {
-        if (getModel() == BBModel.Classic)
-        {
-            if (sensor == BBLightSensor.Left)
-            {
+    export function readLight(sensor: BBLightSensor): number {
+        if (getModel() == BBModel.Classic) {
+            if (sensor == BBLightSensor.Left) {
                 pins.digitalWritePin(DigitalPin.P16, 0);
                 return pins.analogReadPin(AnalogPin.P2);
             }
-            else
-            {
+            else {
                 pins.digitalWritePin(DigitalPin.P16, 1);
                 return pins.analogReadPin(AnalogPin.P2);
             }
         }
-        else
-        {
+        else {
             if (sensor == BBLightSensor.Left)
                 return pins.analogReadPin(AnalogPin.P2);
             else
@@ -1137,11 +1036,9 @@ namespace bitbaot
     //% weight=50
     //% degrees.min=0 degrees.max=180
     //% subcategory="Inputs & Outputs"
-    export function bbSetServo(servo: BBServos, degrees: number): void
-    {
+    export function bbSetServo(servo: BBServos, degrees: number): void {
         degrees = clamp(degrees, 0, 180);
-        if (getModel() == BBModel.XL)
-        {
+        if (getModel() == BBModel.XL) {
             if (servo == BBServos.P1)
                 pins.servoWritePin(AnalogPin.P1, degrees);
             else
@@ -1159,23 +1056,19 @@ namespace bitbaot
     //% weight=40
     //% speed.min=0 speed.max=100
     //% subcategory="Inputs & Outputs"
-    export function bb360Servo(servo: BBServos, direction: BBDirection, speed: number)
-    {
+    export function bb360Servo(servo: BBServos, direction: BBDirection, speed: number) {
         speed = clamp(speed, 0, 100);
         let dir = (direction == BBDirection.Forward) ? 1 : -1;
         let degrees = 90 + dir * speed * 90 / 100
-        if (getModel() == BBModel.XL)
-        {
-            if (servo == BBServos.P1)
-            {
+        if (getModel() == BBModel.XL) {
+            if (servo == BBServos.P1) {
                 degrees = clamp(degrees - _p1Trim, 0, 180);
                 if (speed <= _deadband)
                     pins.digitalWritePin(DigitalPin.P1, 0);
                 else
                     pins.servoWritePin(AnalogPin.P1, degrees);
             }
-            else
-            {
+            else {
                 degrees = clamp(degrees - _p2Trim, 0, 180);
                 if (speed <= _deadband)
                     pins.digitalWritePin(DigitalPin.P2, 0);
@@ -1193,8 +1086,7 @@ namespace bitbaot
     //% weight=30
     //% deadband.min=0 deadband.max=10
     //% subcategory="Inputs & Outputs"
-    export function bbServoDeadband(deadband: number)
-    {
+    export function bbServoDeadband(deadband: number) {
         _deadband = clamp(deadband, 0, 5);
     }
 
@@ -1207,15 +1099,12 @@ namespace bitbaot
     //% weight=30
     //% trim.min=0 trim.max=50
     //% subcategory="Inputs & Outputs"
-    export function bbServoTrim(servo: BBServos, trim: number)
-    {
-        if (servo == BBServos.P1)
-        {
+    export function bbServoTrim(servo: BBServos, trim: number) {
+        if (servo == BBServos.P1) {
             _p1Trim = clamp(trim, 0, 50);
             _p2Trim = 0;
         }
-        else
-        {
+        else {
             _p1Trim = 0;
             _p2Trim = clamp(trim, 0, 50);
         }
@@ -1227,10 +1116,8 @@ namespace bitbaot
     //% blockId="BBStopServos" block="disable all servos"
     //% weight=20
     //% subcategory="Inputs & Outputs"
-    export function bbStopServos(): void
-    {
-        if (getModel() == BBModel.XL)
-        {
+    export function bbStopServos(): void {
+        if (getModel() == BBModel.XL) {
             pins.digitalWritePin(DigitalPin.P1, 0);
             pins.digitalWritePin(DigitalPin.P2, 0);
         }
@@ -1238,15 +1125,13 @@ namespace bitbaot
             pins.digitalWritePin(DigitalPin.P15, 0);
     }
 
-// Addon Boards
+    // Addon Boards
 
-// 5x5 FireLed Matrix 
+    // 5x5 FireLed Matrix 
 
     /* create a FireLed band for the Matrix if not got one already. Default to brightness 40 */
-    function mat5(): fireled.Band
-    {
-        if (!matrix5)
-        {
+    function mat5(): fireled.Band {
+        if (!matrix5) {
             matrix5 = fireled.newBand(DigitalPin.P15, 25);
             matrix5.setBrightness(40);
         }
@@ -1254,8 +1139,7 @@ namespace bitbaot
     }
 
     // update Matrix if _updateMode set to Auto
-    function matUpdate(): void
-    {
+    function matUpdate(): void {
         if (_updateMode == BBMode.Auto)
             matShow();
     }
@@ -1268,8 +1152,7 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function matClear(): void
-    {
+    export function matClear(): void {
         mat5().clearBand();
         matUpdate();
     }
@@ -1283,14 +1166,12 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function setMatrix(rgb: number)
-    {
+    export function setMatrix(rgb: number) {
         rawSetMatrix(rgb);
         matUpdate();
     }
 
-    function rawSetMatrix(rgb: number)
-    {
+    function rawSetMatrix(rgb: number) {
         mat5().setBand(rgb);
     }
 
@@ -1304,12 +1185,11 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function setPixel(ledId: number, rgb: number): void
-    {
+    export function setPixel(ledId: number, rgb: number): void {
         // need to map to match Microbit: top left is 0, bottom right is 24
         let x = 4 - ledId % 5;
         let y = 4 - Math.idiv(ledId, 5);
-        mat5().setPixel(x + y*5, rgb);
+        mat5().setPixel(x + y * 5, rgb);
         matUpdate();
     }
 
@@ -1324,15 +1204,13 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function setArrayPixel(x: number, y: number, rgb: number): void
-    {
+    export function setArrayPixel(x: number, y: number, rgb: number): void {
         rawArrayPixel(x, y, rgb);
         matUpdate();
     }
 
-    function rawArrayPixel(x: number, y: number, rgb: number): void
-    {
-        mat5().setPixel((4-x) + (4-y)*5, rgb);
+    function rawArrayPixel(x: number, y: number, rgb: number): void {
+        mat5().setPixel((4 - x) + (4 - y) * 5, rgb);
     }
 
     /**
@@ -1343,8 +1221,7 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function matRainbow(): void
-    {
+    export function matRainbow(): void {
         // TODO Fix so it uses top left to bottom right
         mat5().setRainbow();
         matUpdate();
@@ -1367,13 +1244,10 @@ namespace bitbaot
     //% inlineInputMode=inline
     //% fill.shadow="toggleYesNo"
     //% blockGap=8
-    export function matRectangle(x1: number, y1: number, x2: number, y2: number, rgb: number, fill: boolean)
-    {
-        for (let x=x1; x <= x2; x++)
-        {
-            for (let y=y1; y <= y2; y++)
-            {
-                if (inRange(x, y) && (x==x1 || x==x2 || y==y1 || y==y2 || fill))
+    export function matRectangle(x1: number, y1: number, x2: number, y2: number, rgb: number, fill: boolean) {
+        for (let x = x1; x <= x2; x++) {
+            for (let y = y1; y <= y2; y++) {
+                if (inRange(x, y) && (x == x1 || x == x2 || y == y1 || y == y2 || fill))
                     rawArrayPixel(x, y, rgb);
             }
         }
@@ -1381,9 +1255,8 @@ namespace bitbaot
     }
 
     /* check x, y is within range */
-    function inRange(x: number, y: number): boolean
-    {
-        return (x>=0 && x<5 && y>=0 && y<5);
+    function inRange(x: number, y: number): boolean {
+        return (x >= 0 && x < 5 && y >= 0 && y < 5);
     }
 
     /**
@@ -1397,8 +1270,7 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function matShowEyeball(pos: eyePos, rgb: number, size: eyeSize): void
-    {
+    export function matShowEyeball(pos: eyePos, rgb: number, size: eyeSize): void {
         rawSetMatrix(rgb);
         // Clear corners to make a circle-ish
         rawArrayPixel(0, 0, 0);
@@ -1406,46 +1278,43 @@ namespace bitbaot
         rawArrayPixel(4, 0, 0);
         rawArrayPixel(4, 4, 0);
         // draw pupil
-        switch(pos)
-        {
+        switch (pos) {
             case eyePos.Forward:
-                (size==eyeSize.Small) ? rawArrayPixel(2,2,0) : pupil5(2,2); break;
+                (size == eyeSize.Small) ? rawArrayPixel(2, 2, 0) : pupil5(2, 2); break;
             case eyePos.Down:
-                (size==eyeSize.Small) ? rawArrayPixel(2,3,0) : pupil5(2,3); break;
+                (size == eyeSize.Small) ? rawArrayPixel(2, 3, 0) : pupil5(2, 3); break;
             case eyePos.Up:
-                (size==eyeSize.Small) ? rawArrayPixel(2,1,0) : pupil5(2,1); break;
+                (size == eyeSize.Small) ? rawArrayPixel(2, 1, 0) : pupil5(2, 1); break;
             case eyePos.Left:
-                (size==eyeSize.Small) ? rawArrayPixel(3,2,0) : pupil5(3,2); break;
+                (size == eyeSize.Small) ? rawArrayPixel(3, 2, 0) : pupil5(3, 2); break;
             case eyePos.Right:
-                (size==eyeSize.Small) ? rawArrayPixel(1,2,0) : pupil5(1,2); break;
+                (size == eyeSize.Small) ? rawArrayPixel(1, 2, 0) : pupil5(1, 2); break;
             case eyePos.DownLeft:
-                (size==eyeSize.Small) ? rawArrayPixel(3,3,0) : pupil4(2,2); break;
+                (size == eyeSize.Small) ? rawArrayPixel(3, 3, 0) : pupil4(2, 2); break;
             case eyePos.DownRight:
-                (size==eyeSize.Small) ? rawArrayPixel(1,3,0) : pupil4(1,2); break;
+                (size == eyeSize.Small) ? rawArrayPixel(1, 3, 0) : pupil4(1, 2); break;
             case eyePos.UpLeft:
-                (size==eyeSize.Small) ? rawArrayPixel(3,1,0) : pupil4(2,1); break;
+                (size == eyeSize.Small) ? rawArrayPixel(3, 1, 0) : pupil4(2, 1); break;
             case eyePos.UpRight:
-                (size==eyeSize.Small) ? rawArrayPixel(1,1,0) : pupil4(1,1); break;
+                (size == eyeSize.Small) ? rawArrayPixel(1, 1, 0) : pupil4(1, 1); break;
         }
         matUpdate();
     }
- 
-     function pupil5(x: number, y: number)
-     {
+
+    function pupil5(x: number, y: number) {
         rawArrayPixel(x, y, 0);
-        rawArrayPixel(x+1, y, 0);
-        rawArrayPixel(x-1, y, 0);
-        rawArrayPixel(x, y+1, 0);
-        rawArrayPixel(x, y-1, 0);
+        rawArrayPixel(x + 1, y, 0);
+        rawArrayPixel(x - 1, y, 0);
+        rawArrayPixel(x, y + 1, 0);
+        rawArrayPixel(x, y - 1, 0);
     }
 
-     function pupil4(x: number, y: number)
-     {
-         rawArrayPixel(x, y, 0);
-         rawArrayPixel(x+1, y, 0);
-         rawArrayPixel(x, y+1, 0);
-         rawArrayPixel(x+1, y+1, 0);
-     }
+    function pupil4(x: number, y: number) {
+        rawArrayPixel(x, y, 0);
+        rawArrayPixel(x + 1, y, 0);
+        rawArrayPixel(x, y + 1, 0);
+        rawArrayPixel(x + 1, y + 1, 0);
+    }
 
     /**
       * Shows an Image on the Matrix
@@ -1457,13 +1326,10 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function matShowImage(myImage: Image, rgb: number): void
-    {
+    export function matShowImage(myImage: Image, rgb: number): void {
         //myImage.showImage(0);
-        for (let i=0; i<5; i++)
-        {
-            for (let j=0; j<5; j++)
-            {
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
                 if (myImage.pixel(i, j))
                     rawArrayPixel(i, j, rgb);
             }
@@ -1480,8 +1346,7 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function matShow(): void
-    {
+    export function matShow(): void {
         if (btDisabled)
             mat5().updateBand();
     }
@@ -1496,35 +1361,30 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="5x5 Matrix"
     //% blockGap=8
-    export function matBrightness(brightness: number): void
-    {
+    export function matBrightness(brightness: number): void {
         mat5().setBrightness(brightness);
         matUpdate();
     }
 
-// BitFace Addon
+    // BitFace Addon
     /* create a FireLed band for the BitFace if not got one already. Default to brightness 40 */
-    function bitf(): fireled.Band
-    {
-        if (!bitface)
-        {
+    function bitf(): fireled.Band {
+        if (!bitface) {
             bitface = fireled.newBand(DigitalPin.P15, 17);
             bitface.setBrightness(40);
         }
         return bitface;
     }
 
-    function bitfUpdate(): void
-    {
+    function bitfUpdate(): void {
         if (btDisabled)
             bitf().updateBand();
     }
 
-    function drawMouth(myList: number[], rgb: number)
-    {
-        for (let i=0; i<14; i++)
+    function drawMouth(myList: number[], rgb: number) {
+        for (let i = 0; i < 14; i++)
             bitf().setPixel(i, 0);
-        for (let i=0; i<myList.length; i++)
+        for (let i = 0; i < myList.length; i++)
             bitf().setPixel(myList[i], rgb);
     }
 
@@ -1538,8 +1398,7 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="BitFace"
     //% blockGap=8
-    export function setBitface(rgb: number)
-    {
+    export function setBitface(rgb: number) {
         bitf().setBand(rgb);
         bitfUpdate();
     }
@@ -1555,8 +1414,7 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="BitFace"
     //% blockGap=8
-    export function setBitEye(eye: bfEyes, rgb: number)
-    {
+    export function setBitEye(eye: bfEyes, rgb: number) {
         if (eye == bfEyes.Left || eye == bfEyes.Both)
             bitf().setPixel(15, rgb);
         if (eye == bfEyes.Right || eye == bfEyes.Both)
@@ -1574,8 +1432,7 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="BitFace"
     //% blockGap=8
-    export function setBitNose(rgb: number)
-    {
+    export function setBitNose(rgb: number) {
         bitf().setPixel(14, rgb);
         bitfUpdate();
     }
@@ -1591,10 +1448,8 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="BitFace"
     //% blockGap=8
-    export function setBitMouth(mouth: bfMouth, rgb: number)
-    {
-        switch (mouth)
-        {
+    export function setBitMouth(mouth: bfMouth, rgb: number) {
+        switch (mouth) {
             case bfMouth.Smile: drawMouth(mouthSmile, rgb); break;
             case bfMouth.Grin: drawMouth(mouthGrin, rgb); break;
             case bfMouth.Sad: drawMouth(mouthSad, rgb); break;
@@ -1616,19 +1471,16 @@ namespace bitbaot
     //% subcategory=Addons
     //% group="BitFace"
     //% blockGap=8
-    export function bitBrightness(brightness: number): void
-    {
+    export function bitBrightness(brightness: number): void {
         bitf().setBrightness(brightness);
         bitfUpdate();
     }
 
-// OLED 128x64 Addon
+    // OLED 128x64 Addon
 
     /* create a new OLED object if needed */
-    function oScreen(): firescreen.Screen
-    {
-        if (!oled)
-        {
+    function oScreen(): firescreen.Screen {
+        if (!oled) {
             oled = firescreen.newScreen(0x3c);
         }
         return oled;
@@ -1649,8 +1501,7 @@ namespace bitbaot
     //% inlineInputMode=inline
     //% inv.shadow="toggleYesNo"
     //% blockGap=8
-    export function oledText(text: string, x: number, y: number, inv: boolean)
-    {
+    export function oledText(text: string, x: number, y: number, inv: boolean) {
         oScreen().doText(text, x, y, inv);
     }
 
@@ -1669,8 +1520,7 @@ namespace bitbaot
     //% inlineInputMode=inline
     //% inv.shadow="toggleYesNo"
     //% blockGap=8
-    export function oledNumber(num: number, x: number, y: number, inv: boolean)
-    {
+    export function oledNumber(num: number, x: number, y: number, inv: boolean) {
         oScreen().doNumber(num, x, y, inv);
     }
 
@@ -1683,8 +1533,7 @@ namespace bitbaot
     //% group="OLED 128x64"
     //% weight=80
     //% blockGap=8
-    export function oledUpdate()
-    {
+    export function oledUpdate() {
         oScreen().updateScreen();
     }
 
@@ -1699,8 +1548,7 @@ namespace bitbaot
     //% group="OLED 128x64"
     //% weight=80
     //% blockGap=8
-    export function oledSet(set: boolean)
-    {
+    export function oledSet(set: boolean) {
         oScreen().setScreen(set);
     }
 
@@ -1714,8 +1562,7 @@ namespace bitbaot
     //% group="OLED 128x64"
     //% weight=70
     //% blockGap=8
-    export function oledInvert(inv: boolean)
-    {
+    export function oledInvert(inv: boolean) {
         oScreen().invertOled(inv);
     }
 
@@ -1729,8 +1576,7 @@ namespace bitbaot
     //% group="OLED 128x64"
     //% weight=60
     //% blockGap=8
-    export function oledZOOM(zoom: boolean)
-    {
+    export function oledZOOM(zoom: boolean) {
         oScreen().zoomOled(zoom);
     }
 
@@ -1750,8 +1596,7 @@ namespace bitbaot
     //% weight=50
     //% inlineInputMode=inline
     //% blockGap=8
-    export function oledPlotPixel(x: number, y: number, doSet: boolean, update: boolean)
-    {
+    export function oledPlotPixel(x: number, y: number, doSet: boolean, update: boolean) {
         oScreen().plotPixel(x, y, doSet, update);
     }
 
@@ -1773,8 +1618,7 @@ namespace bitbaot
     //% weight=45
     //% inlineInputMode=inline
     //% blockGap=8
-    export function oledLine(x1: number, y1: number, x2: number, y2: number, doSet: boolean, update: boolean)
-    {
+    export function oledLine(x1: number, y1: number, x2: number, y2: number, doSet: boolean, update: boolean) {
         oScreen().oledLine(x1, y1, x2, y2, doSet, update);
     }
 
@@ -1796,8 +1640,7 @@ namespace bitbaot
     //% weight=30
     //% inlineInputMode=inline
     //% blockGap=8
-    export function oledRectangle(x1: number, y1: number, x2: number, y2: number, doSet: boolean, update: boolean)
-    {
+    export function oledRectangle(x1: number, y1: number, x2: number, y2: number, doSet: boolean, update: boolean) {
         oScreen().oledRect(x1, y1, x2, y2, doSet, update);
     }
 
@@ -1818,8 +1661,7 @@ namespace bitbaot
     //% weight=30
     //% inlineInputMode=inline
     //% blockGap=8
-    export function oledCircle (x: number, y: number, r: number, doSet: boolean, update: boolean)
-    {
+    export function oledCircle(x: number, y: number, r: number, doSet: boolean, update: boolean) {
         oScreen().oledCircle(x, y, r, doSet, update);
     }
 

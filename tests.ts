@@ -1,66 +1,66 @@
 {
-  // Drive 100 ms forward
-  bitbot.motor(BBMotor.All, 1023);
-  basic.pause(100);
+    // Drive 100 ms forward
+    bitbaot.motor(BBMotor.All, 1023);
+    basic.pause(100);
 
-  // Drive 100 ms reverse
-  bitbot.motor(BBMotor.All, -1023);
-  basic.pause(100);
+    // Drive 100 ms reverse
+    bitbaot.motor(BBMotor.All, -1023);
+    basic.pause(100);
 
-  // Drive 100 ms forward on left and reverse on right
-  bitbot.motor(BBMotor.Left, 1023);
-  bitbot.motor(BBMotor.Right, -1023);
-  basic.pause(100);
+    // Drive 100 ms forward on left and reverse on right
+    bitbaot.motor(BBMotor.Left, 1023);
+    bitbaot.motor(BBMotor.Right, -1023);
+    basic.pause(100);
 
-  // Buzz for 100 ms
-  bitbot.buzz(1);
-  basic.pause(100);
-  bitbot.buzz(0);
+    // Buzz for 100 ms
+    bitbaot.buzz(1);
+    basic.pause(100);
+    bitbaot.buzz(0);
 
-  // Read left and right line sensor
-  basic.showNumber(bitbot.readLine(BBLineSensor.Left));
-  basic.showNumber(bitbot.readLine(BBLineSensor.Right));
+    // Read left and right line sensor
+    basic.showNumber(bitbaot.readLine(BBLineSensor.Left));
+    basic.showNumber(bitbaot.readLine(BBLineSensor.Right));
 
-  // Read left and right light sensor
-  basic.showNumber(bitbot.readLight(BBLightSensor.Left));
-  basic.showNumber(bitbot.readLight(BBLightSensor.Right));
+    // Read left and right light sensor
+    basic.showNumber(bitbaot.readLight(BBLightSensor.Left));
+    basic.showNumber(bitbaot.readLight(BBLightSensor.Right));
 
-  // Read sonar values
-  basic.showNumber(bitbot.sonar(BBPingUnit.MicroSeconds));
-  basic.showNumber(bitbot.sonar(BBPingUnit.Centimeters));
-  basic.showNumber(bitbot.sonar(BBPingUnit.Inches));
+    // Read sonar values
+    basic.showNumber(bitbaot.sonar(BBPingUnit.MicroSeconds));
+    basic.showNumber(bitbaot.sonar(BBPingUnit.Centimeters));
+    basic.showNumber(bitbaot.sonar(BBPingUnit.Inches));
 
-  // Show all leds
-  bitbot.neoSetColor(neopixel.colors(NeoPixelColors.Red));
-  bitbot.neoShow();
+    // Show all leds
+    bitbaot.neoSetColor(neopixel.colors(NeoPixelColors.Red));
+    bitbaot.neoShow();
 
-  // Clear all leds
-  bitbot.neoClear();
-  bitbot.neoShow();
+    // Clear all leds
+    bitbaot.neoClear();
+    bitbaot.neoShow();
 
-  // Show led at position 1
-  bitbot.neoSetPixelColor(0, neopixel.colors(NeoPixelColors.Red));
-  bitbot.neoShow();
+    // Show led at position 1
+    bitbaot.neoSetPixelColor(0, neopixel.colors(NeoPixelColors.Red));
+    bitbaot.neoShow();
 
-  // Show led rainbow
-  bitbot.neoRainbow();
-  bitbot.neoShow();
+    // Show led rainbow
+    bitbaot.neoRainbow();
+    bitbaot.neoShow();
 
-  // Show led rainbow and shift
-  bitbot.neoRainbow();
-  bitbot.neoShift();
-  bitbot.neoShow();
+    // Show led rainbow and shift
+    bitbaot.neoRainbow();
+    bitbaot.neoShift();
+    bitbaot.neoShow();
 
-  // Show led rainbow and rotate
-  bitbot.neoRainbow();
-  bitbot.neoRotate();
-  bitbot.neoShow();
+    // Show led rainbow and rotate
+    bitbaot.neoRainbow();
+    bitbaot.neoRotate();
+    bitbaot.neoShow();
 
-  // Set brightness of leds
-  bitbot.neoBrightness(100);
-  bitbot.neoShow();
+    // Set brightness of leds
+    bitbaot.neoBrightness(100);
+    bitbaot.neoShow();
 
-  // Use neo() variable
-  bitbot.neo().clear();
-  bitbot.neo().show();
+    // Use neo() variable
+    bitbaot.neo().clear();
+    bitbaot.neo().show();
 }
