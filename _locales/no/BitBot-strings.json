@@ -27,7 +27,7 @@
     "BBPingUnit.MicroSeconds|block": "μs",
     "BBRobotDirection.Left|block": "babord",
     "BBRobotDirection.Right|block": "styrbord",
-    "BBStopMode.Brake|block": "brems",
+    "BBStopMode.Brake|block": "breems",
     "BBStopMode.Coast|block": "bråstopp",
     "bfEyes.Both|block": "begge",
     "bfEyes.Left|block": "babord",
