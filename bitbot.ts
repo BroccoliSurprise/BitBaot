@@ -850,7 +850,7 @@ namespace bitbaot {
     //% group=Basic
     //% blockGap=8
     export function setPortColor(rgb: number): void {
-        fire().setPixel(6, rgb);
+        fire().setPixel(5, rgb);
         updateLEDs();
     }
 
