@@ -113,17 +113,17 @@
     "eyePos.Up|block": "opp",
     "eyeSize.Large|block": "store",
     "eyeSize.Small|block": "små",
-    "{id:category}bitbaot": "BitBaot",
+    "{id:category}Bitbaot": "Bit:Båt",
     "{id:group}5x5 Matrix": "5x5 Matrix",
     "{id:group}Advanced": "Avansert",
     "{id:group}Basic": "Basis",
     "{id:group}BitFace": "BitFace",
-    "{id:group}New style blocks": "køyring med fart frå 0-100%",
+    "{id:group}New style blocks": "Køyring med fart frå 0-100%",
     "{id:group}OLED 128x64": "OLED 128x64",
     "{id:group}Old style blocks": "Gamle blokker. Fart frå -1023 til +1023",
     "{id:subcategory}Addons": "Tilleggsutstyr",
-    "{id:subcategory}bitbaot_Model": "bitbaot-modell",
+    "{id:subcategory}bitbaot_Model": "Bitbaot-modell",
     "{id:subcategory}FireLeds": "Lys",
     "{id:subcategory}Inputs & Outputs": "Sensorar og styring",
-    "{id:subcategory}Motors": "køyring"
+    "{id:subcategory}Motors": "Køyring"
 }
